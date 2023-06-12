@@ -7,13 +7,20 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/shared/server.js",
-    "dev:server": "ts-node-dev --inspect --transpile-only --ignore node_modules src/shared/server.ts"
+    "dev:server": "ts-node-dev --inspect --transpile-only --ignore node_modules src/shared/server.ts",
+    "dev:docker": "docker-compose up -d",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "migration:create": "cross-env yarn typeorm migration:create ./src/shared/typeorm/migrations/$name",
+    "migration:generate": "cross-env yarn typeorm migration:generate -d ./src/shared/typeorm ./src/shared/typeorm/migrations/$name",
+    "migration:run": "yarn typeorm migration:run -d ./src/shared/typeorm",
+    "migration:revert": "yarn typeorm migration:revert -d ./src/shared/typeorm"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/node": "^20.1.5",
     "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",
+    "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-typescript": "^3.5.5",
@@ -23,9 +30,17 @@
   },
   "dependencies": {
     "@truffle/contract": "^4.6.21",
+    "bcryptjs": "^2.4.3",
+    "celebrate": "^15.0.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^9.0.0",
+    "pg": "^8.11.0",
     "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.7.0",
+    "typeorm": "^0.3.16",
+    "typeorm-naming-strategies": "^4.1.0",
     "web3": "^1.10.0"
   }
 }
