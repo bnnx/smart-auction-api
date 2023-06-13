@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
+    "target": "es2021",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
     "rootDir": "./src",
-    "module": "CommonJS",
-    "target": "es2022",
+    "outDir": "./dist",
     "esModuleInterop": true,
-    "allowJs": true,
-    "strictNullChecks": true, 
-    "experimentalDecorators": true, 
-    "resolveJsonModule": true
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "skipLibCheck": true
   },
   "exclude": [
     "./dist",

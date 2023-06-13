@@ -11,6 +11,10 @@ export class UsersRepository implements IUsersRepository {
     this.ormRepository = PostgresDataSource.getRepository(User);
   }
 
+  public async findAll(): Promise<User[]> {
+    return this.ormRepository.find();
+  }
+
   public async findById(id: string): Promise<User | null> {
     return this.ormRepository.findOne({ where: { id } });
   }

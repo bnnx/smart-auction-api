@@ -7,5 +7,18 @@ import { UsersController } from '../controllers/users-controller';
 export const usersRoutes = Router();
 const usersController = new UsersController();
 
-usersRoutes.post('/', celebrate(CreateUserSchema), usersController.create as RequestHandler);
-usersRoutes.get('/', ensureAuthentication, usersController.read as RequestHandler);
+usersRoutes.get(
+  '/',
+  ensureAuthentication,
+  usersController.index as RequestHandler,
+);
+usersRoutes.post(
+  '/',
+  celebrate(CreateUserSchema),
+  usersController.create as RequestHandler,
+);
+usersRoutes.get(
+  '/:userId',
+  ensureAuthentication,
+  usersController.read as RequestHandler,
+);
