@@ -4,6 +4,7 @@ import { ListUsersService } from '../services/list-users-service';
 import { CreateUserService } from '../services/create-user-service';
 import { type ICreateUserDTO } from '../contracts/dtos/create-user-dto';
 import { ReadUserService } from '../services/read-user-service';
+import { DeleteUserService } from '../services/delete-user-service';
 
 export class UsersController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -30,5 +31,12 @@ export class UsersController {
     const readUserService = container.resolve(ReadUserService);
     const user = await readUserService.execute({ userId });
     return response.json(user);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { userId } = request.params;
+    const deleteUserService = container.resolve(DeleteUserService);
+    await deleteUserService.execute({ id: userId });
+    return response.json({ message: 'Usuário deletado com sucesso!' });
   }
 }

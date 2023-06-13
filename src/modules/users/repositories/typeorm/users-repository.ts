@@ -5,7 +5,7 @@ import { User } from '../../entities/user-entity';
 import { type ICreateUserDTO } from '../../contracts/dtos/create-user-dto';
 
 export class UsersRepository implements IUsersRepository {
-  private readonly ormRepository: Repository<User>
+  private readonly ormRepository: Repository<User>;
 
   constructor() {
     this.ormRepository = PostgresDataSource.getRepository(User);
@@ -30,5 +30,9 @@ export class UsersRepository implements IUsersRepository {
 
   public async save(user: User): Promise<User> {
     return this.ormRepository.save(user);
+  }
+
+  public async delete(id: string): Promise<void> {
+    await this.ormRepository.delete(id);
   }
 }

@@ -18,9 +18,10 @@ export function errorHandler(
   }
 
   if (isCelebrateError(err)) {
-    const error = err.details.get('body')
-      ?? err.details.get('params')
-      ?? err.details.get('query');
+    const error =
+      err.details.get('body') ??
+      err.details.get('params') ??
+      err.details.get('query');
     return response.status(400).json({
       status: 'error',
       message: error?.message,
@@ -34,6 +35,8 @@ export function errorHandler(
       message: error,
     });
   }
+
+  console.error('Internal error: ', err.message);
 
   return response.status(500).json({
     status: 'error',

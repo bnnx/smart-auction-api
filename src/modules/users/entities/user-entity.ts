@@ -4,14 +4,14 @@ import { BaseEntity } from '../../../shared/typeorm/entities/base-entity';
 @Entity('users')
 export class User extends BaseEntity {
   @Column('varchar', { unique: true })
-    email: string
+  email: string;
 
   @Column('varchar')
-    password: string
+  password: string;
 
   @Column('varchar')
-    firstName: string
+  firstName: string;
 
   @Column('varchar')
-    lastName: string
+  lastName: string;
 }
