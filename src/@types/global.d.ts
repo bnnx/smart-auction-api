@@ -5,3 +5,5 @@ declare namespace NodeJS {
     JWT_SECRET: string;
   }
 }
+
+declare module '*.json';
